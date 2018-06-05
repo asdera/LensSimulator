@@ -34,6 +34,8 @@ function ray(x1, y1, x2, y2, v=true) {
 
 function setup() {
     createCanvas(1000, 500);
+    textAlign(CENTER);
+    strokeWeight(1);
     noLoop();
     redraw();
 }
@@ -50,11 +52,12 @@ function draw() {
     line(500, 0, 500, 500);
 
     mark(-focalLength);
-    mark(focalLength, "white");
     mark(-focalLength*2);
     mark(focalLength*2);
+    mark(focalLength, "white");
+    stroke("red")
+    text(round(focalLength), 500+focalLength, 275);
 
-    strokeWeight(2);
 
     // Positioning
     image.position = 1/(1/focalLength+1/object.position);
@@ -80,13 +83,22 @@ function draw() {
 
     // Object
     fill("white");
-    stroke("black")
+    stroke("black");
     rectMode(CENTER);
     rect(500+object.position, 250-object.height/2, object.width, object.height);
+    fill("red");
+    stroke("red");
+    text(round(object.position), 500+object.position, 250-object.height-object.height/abs(object.height)*50);
+    text(abs(round(object.height)), 500+object.position, 250-object.height-object.height/abs(object.height)*25);
 
     // Image
     fill("darkgray");
+    stroke("black");
     rect(500+image.position, 250+image.height/2, image.width, image.height);
+    fill("red");
+    stroke("red");
+    text(round(image.position), 500+image.position, 250+image.height+image.height/abs(image.height)*50);
+    text(abs(round(image.height*100)/100), 500+image.position, 250+image.height+image.height/abs(image.height)*25);
 
     // Lens
     noFill();
